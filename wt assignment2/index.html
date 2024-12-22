@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Application Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Online Application Form</h1>
+    </header>
+
+    <main>
+        <form id="applicationForm">
+            <section>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </section>
+
+            <section>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </section>
+
+            <section>
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required>
+            </section>
+
+            <section>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </section>
+
+            <section>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+            </section>
+
+            <section>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </section>
+
+            <section>
+                <button type="submit">Submit Application</button>
+            </section>
+        </form>
+
+        <div id="successMessage" style="display:none;">
+            <h2>Application Submitted Successfully!</h2>
+            <p><strong>Submitted Data:</strong></p>
+            <ul id="submittedData"></ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Name</p>
+    </footer>
+
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission to server
+
+            // Capture input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const dob = document.getElementById('dob').value;
+            const address = document.getElementById('address').value;
+            const gender = document.getElementById('gender').value;
+
+            // Display the success message and submitted data
+            const successMessage = document.getElementById('successMessage');
+            const submittedData = document.getElementById('submittedData');
+
+            submittedData.innerHTML = `
+                <li><strong>Name:</strong> ${name}</li>
+                <li><strong>Email:</strong> ${email}</li>
+                <li><strong>Phone:</strong> ${phone}</li>
+                <li><strong>Date of Birth:</strong> ${dob}</li>
+                <li><strong>Address:</strong> ${address}</li>
+                <li><strong>Gender:</strong> ${gender}</li>
+            `;
+
+            successMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
